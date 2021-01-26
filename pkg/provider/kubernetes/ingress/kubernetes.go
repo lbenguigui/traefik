@@ -355,6 +355,9 @@ func (p *Provider) shouldProcessIngress(ingress *networkingv1beta1.Ingress, ingr
 	// configuration through the new kubernetes ingressClass
 	if ingress.Spec.IngressClassName != nil {
 		for _, ic := range ingressClasses {
+			if p.IngressClass != "" && p.IngressClass != *ingress.Spec.IngressClassName {
+				continue
+			}
 			if *ingress.Spec.IngressClassName == ic.ObjectMeta.Name {
 				return true
 			}
