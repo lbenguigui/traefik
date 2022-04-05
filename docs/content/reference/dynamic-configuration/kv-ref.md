@@ -36,6 +36,7 @@
 | `traefik/http/middlewares/Middleware09/forwardAuth/authResponseHeaders/0` | `foobar` |
 | `traefik/http/middlewares/Middleware09/forwardAuth/authResponseHeaders/1` | `foobar` |
 | `traefik/http/middlewares/Middleware09/forwardAuth/authResponseHeadersRegex` | `foobar` |
+| `traefik/http/middlewares/Middleware09/forwardAuth/addAuthCookiesToResponse` | `foobar` |
 | `traefik/http/middlewares/Middleware09/forwardAuth/tls/ca` | `foobar` |
 | `traefik/http/middlewares/Middleware09/forwardAuth/tls/cert` | `foobar` |
 | `traefik/http/middlewares/Middleware09/forwardAuth/tls/insecureSkipVerify` | `true` |
