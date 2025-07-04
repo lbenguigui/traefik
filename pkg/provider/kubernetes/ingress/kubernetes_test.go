@@ -1202,32 +1202,8 @@ func TestLoadConfigurationFromIngresses(t *testing.T) {
 			expected: &dynamic.Configuration{
 				HTTP: &dynamic.HTTPConfiguration{
 					Middlewares: map[string]*dynamic.Middleware{},
-					Routers: map[string]*dynamic.Router{
-						"testing-foo": {
-							Rule:    "PathPrefix(`/foo`)",
-							Service: "testing-service1-80",
-						},
-						"testing-bar": {
-							Rule:    "PathPrefix(`/bar`)",
-							Service: "testing-service1-80",
-						},
-					},
-					Services: map[string]*dynamic.Service{
-						"testing-service1-80": {
-							LoadBalancer: &dynamic.ServersLoadBalancer{
-								Strategy:       dynamic.BalancerStrategyWRR,
-								PassHostHeader: pointer(true),
-								ResponseForwarding: &dynamic.ResponseForwarding{
-									FlushInterval: ptypes.Duration(100 * time.Millisecond),
-								},
-								Servers: []dynamic.Server{
-									{
-										URL: "http://10.10.0.1:8080",
-									},
-								},
-							},
-						},
-					},
+					Routers:     map[string]*dynamic.Router{},
+					Services:    map[string]*dynamic.Service{},
 				},
 			},
 		},
@@ -1483,28 +1459,8 @@ func TestLoadConfigurationFromIngresses(t *testing.T) {
 			expected: &dynamic.Configuration{
 				HTTP: &dynamic.HTTPConfiguration{
 					Middlewares: map[string]*dynamic.Middleware{},
-					Routers: map[string]*dynamic.Router{
-						"testing-bar": {
-							Rule:    "PathPrefix(`/bar`)",
-							Service: "testing-service1-80",
-						},
-					},
-					Services: map[string]*dynamic.Service{
-						"testing-service1-80": {
-							LoadBalancer: &dynamic.ServersLoadBalancer{
-								Strategy:       dynamic.BalancerStrategyWRR,
-								PassHostHeader: pointer(true),
-								ResponseForwarding: &dynamic.ResponseForwarding{
-									FlushInterval: ptypes.Duration(100 * time.Millisecond),
-								},
-								Servers: []dynamic.Server{
-									{
-										URL: "http://10.10.0.1:8080",
-									},
-								},
-							},
-						},
-					},
+					Routers:     map[string]*dynamic.Router{},
+					Services:    map[string]*dynamic.Service{},
 				},
 			},
 		},
@@ -1566,6 +1522,16 @@ func TestLoadConfigurationFromIngresses(t *testing.T) {
 		},
 		{
 			desc: "Ingress with missing ingressClass",
+			expected: &dynamic.Configuration{
+				HTTP: &dynamic.HTTPConfiguration{
+					Middlewares: map[string]*dynamic.Middleware{},
+					Routers:     map[string]*dynamic.Router{},
+					Services:    map[string]*dynamic.Service{},
+				},
+			},
+		},
+		{
+			desc: "Ingress with ingressClassName but no provider ingressClass",
 			expected: &dynamic.Configuration{
 				HTTP: &dynamic.HTTPConfiguration{
 					Middlewares: map[string]*dynamic.Middleware{},

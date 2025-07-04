@@ -232,8 +232,6 @@ func (p *Provider) loadConfigurationFromIngresses(ctx context.Context, client Cl
 
 		if p.IngressClass != "" {
 			ingressClasses = filterIngressClassByName(p.IngressClass, ics)
-		} else {
-			ingressClasses = ics
 		}
 	}
 
